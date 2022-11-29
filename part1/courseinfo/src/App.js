@@ -12,14 +12,7 @@ function App() {
   return (
     <div>
       <Header title={course} />
-      <Content
-        part1={part1}
-        exercises1={exercises1}
-        part2={part2}
-        exercises2={exercises2}
-        part3={part3}
-        exercises3={exercises3}
-      />
+      <Content part={part1} exercises={exercises1} />
       <Total
         excersises1={exercises1}
         excersises2={exercises2}
