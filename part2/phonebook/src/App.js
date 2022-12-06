@@ -8,9 +8,26 @@ const App = () => {
   };
   const handleClick = (e) => {
     e.preventDefault();
+    if (newName === "") {
+      alert("Name cannot be blank!");
+      return;
+    }
+    const isPresent = persons.some((person) => {
+      if (person.name.toLowerCase().trim() === newName.toLowerCase().trim()) {
+        return true;
+      }
+      return false;
+    });
+    if (isPresent) {
+      alert(`${newName} is already added to phonebook`);
+      setNewName("");
+      return;
+    }
+
     const newPerson = { name: newName };
     setPersons(persons.concat(newPerson));
     setNewName("");
+    console.log(persons);
   };
 
   return (
@@ -28,7 +45,7 @@ const App = () => {
       </form>
       <h2>Numbers</h2>
       {persons.map((person) => (
-        <p>{person.name}</p>
+        <p key={person.name}>{person.name}</p>
       ))}
     </div>
   );
