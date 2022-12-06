@@ -6,16 +6,26 @@ function Statistics({ good, bad, neutral }) {
   const positivePercentage = `${(good / (good + neutral + bad)) * 100} %`;
   if (good > 0 || bad > 0 || neutral > 0) {
     return (
-      <>
-        <h2>Statistics</h2>
-        <ul>
-          <StatisticLine text="good" value={good} />
-          <StatisticLine text="neutral" value={neutral} />
-          <StatisticLine text="bad" value={bad} />
-          <StatisticLine text="average" value={avg} />
-          <StatisticLine text="positive" value={positivePercentage} />
-        </ul>
-      </>
+      <table>
+        <caption>Statistics</caption>
+        <tbody>
+          <tr>
+            <StatisticLine text="good" value={good} />
+          </tr>
+          <tr>
+            <StatisticLine text="neutral" value={neutral} />
+          </tr>
+          <tr>
+            <StatisticLine text="bad" value={bad} />
+          </tr>
+          <tr>
+            <StatisticLine text="average" value={avg} />
+          </tr>
+          <tr>
+            <StatisticLine text="positive" value={positivePercentage} />
+          </tr>
+        </tbody>
+      </table>
     );
   }
   return <p>No feedback given</p>;

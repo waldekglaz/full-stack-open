@@ -13,7 +13,7 @@ function App() {
     setNeutral(neutral + 1);
   };
   const handleBadFeedback = () => {
-    setNeutral(bad + 1);
+    setBad(bad + 1);
   };
 
   return (
