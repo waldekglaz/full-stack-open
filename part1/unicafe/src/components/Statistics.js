@@ -1,17 +1,19 @@
 import React from "react";
+import StatisticLine from "./StatisticLine";
 
 function Statistics({ good, bad, neutral }) {
+  const avg = good * 1 + (bad * -1) / (good + neutral + bad);
+  const positivePercentage = `${(good / (good + neutral + bad)) * 100} %`;
   if (good > 0 || bad > 0 || neutral > 0) {
     return (
       <>
         <h2>Statistics</h2>
         <ul>
-          <li>good {good}</li>
-          <li>neutral {neutral}</li>
-          <li>bad {bad}</li>
-          <li>all {good + neutral + bad}</li>
-          <li>average {(good * 1 + bad * -1) / (good + neutral + bad)}</li>
-          <li>positive {good / (good + neutral + bad)} %</li>
+          <StatisticLine text="good" value={good} />
+          <StatisticLine text="neutral" value={neutral} />
+          <StatisticLine text="bad" value={bad} />
+          <StatisticLine text="average" value={avg} />
+          <StatisticLine text="positive" value={positivePercentage} />
         </ul>
       </>
     );
