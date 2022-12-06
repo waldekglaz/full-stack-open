@@ -22,12 +22,20 @@ function App() {
     setVotes([...votes]);
   };
 
+  const mostVoted = Math.max(...votes);
+
   return (
     <div>
+      <h2>Anecdote of the day</h2>
       <div>{anecdotes[selected]}</div>
       <div>{`has ${votes[selected]} votes`}</div>
       <button onClick={handleVote}>vote</button>
       <button onClick={handleClick}>next anecdote</button>
+      <div>
+        <h2>Anecdote with most votes</h2>
+        {anecdotes[votes.indexOf(mostVoted)]}
+        <div>{`has ${votes[votes.indexOf(mostVoted)]} votes`}</div>
+      </div>
     </div>
   );
 }
