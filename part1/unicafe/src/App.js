@@ -19,7 +19,12 @@ function App() {
   return (
     <div>
       <h2>Give Feedback</h2>
-      <Button name="Good" onClick={handleGoodFeedback} func={setGood} />
+      <Button
+        name="Good"
+        onClick={handleGoodFeedback}
+        func={setGood}
+        value={good}
+      />
       <Button name="Neutral" onClick={handleNeutralFeedback} />
       <Button name="Bad" onClick={handleBadFeedback} />
 
