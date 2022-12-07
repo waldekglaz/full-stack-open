@@ -1,4 +1,7 @@
 import { useState } from "react";
+import SearchBar from "./components/SearchBar";
+import InputForm from "./components/InputForm";
+import PersonsList from "./components/PersonsList";
 
 const App = () => {
   const [persons, setPersons] = useState([
@@ -7,9 +10,11 @@ const App = () => {
     { name: "Dan Abramov", number: "12-43-234345", id: 3 },
     { name: "Mary Poppendieck", number: "39-23-6423122", id: 4 },
   ]);
-  const [newName, setNewName] = useState("");
-  const [newNumber, setNewNumber] = useState("");
   const [searchPerson, setSearchPerson] = useState("");
+  const handleSearch = (e) => {
+    setSearchPerson(e.target.value);
+  };
+
   const filteredData = persons.filter((el) => {
     //if no input the return the original
     if (searchPerson === "") {
@@ -20,62 +25,16 @@ const App = () => {
       return el.name.toLowerCase().includes(searchPerson.toLowerCase());
     }
   });
-  const handleNameChange = (e) => {
-    setNewName(e.target.value);
-  };
-  const handleNumberChange = (e) => {
-    setNewNumber(e.target.value);
-  };
-  const handleClick = (e) => {
-    e.preventDefault();
-    if (newName === "") {
-      alert("Name cannot be blank!");
-      return;
-    }
-    const isPresent = persons.some((person) => {
-      if (person.name.toLowerCase().trim() === newName.toLowerCase().trim()) {
-        return true;
-      }
-      return false;
-    });
-    if (isPresent) {
-      alert(`${newName} is already added to phonebook`);
-      setNewName("");
-      return;
-    }
-
-    const newPerson = { name: newName, number: newNumber };
-    setPersons(persons.concat(newPerson));
-    setNewName("");
-    setNewNumber("");
-  };
-  const handleSearch = (e) => {
-    setSearchPerson(e.target.value);
-  };
 
   return (
     <div>
       <h2>Phonebook</h2>
-      <div>
-        search <input onChange={handleSearch} value={searchPerson} />
-      </div>
-      <form>
-        <div>
-          name: <input value={newName} onChange={handleNameChange} />
-        </div>
-        <div>
-          number: <input value={newNumber} onChange={handleNumberChange} />
-        </div>
-        <div>
-          <button type="submit" onClick={handleClick}>
-            add
-          </button>
-        </div>
-      </form>
+      <SearchBar handleSearch={handleSearch} searchPerson={searchPerson} />
+      <InputForm data={persons} setData={setPersons} />
+
       <h2>Numbers</h2>
-      {filteredData.map((person) => (
-        <p key={person.name}>{`${person.name}: ${person.number}`}</p>
-      ))}
+
+      <PersonsList data={filteredData} />
     </div>
   );
 };
