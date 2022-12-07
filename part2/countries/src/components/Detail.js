@@ -1,7 +1,7 @@
 import React from "react";
+import uniqid from "uniqid";
 
 function Detail({ data }) {
-  console.log(data);
   const country = data[0];
 
   return (
@@ -11,10 +11,10 @@ function Detail({ data }) {
       <p>Area {country.area}</p>
       <ul>
         {Object.values(country.languages).map((item) => (
-          <li>{item}</li>
+          <li key={uniqid()}>{item}</li>
         ))}
       </ul>
-      <img src={country.flags.png} />
+      <img src={country.flags.png} alt={country.name.common} />
     </div>
   );
 }
