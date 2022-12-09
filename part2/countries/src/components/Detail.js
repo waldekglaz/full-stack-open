@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import uniqid from "uniqid";
+const api_key = process.env.REACT_APP_WEATHER_KEY;
 
 function Detail({ data }) {
   const country = data[0];
@@ -9,13 +10,12 @@ function Detail({ data }) {
   useEffect(() => {
     axios
       .get(
-        `https://api.openweathermap.org/data/2.5/weather?q=${country.capital}&units=metric&appid=b36b734cb7761534abefefc3fba5617c`
+        `https://api.openweathermap.org/data/2.5/weather?q=${country.capital}&units=metric&appid=${api_key}`
       )
       .then((res) => {
         setWeather(res.data);
       });
   }, []);
-  console.log(weather);
 
   return (
     <div>
@@ -32,8 +32,8 @@ function Detail({ data }) {
       </div>
       {weather.main && (
         <div>
-          <h2>Weather in {country.capital} Celcius</h2>
-          <p>temperature {weather.main.temp}</p>
+          <h2>Weather in {country.capital}</h2>
+          <p>temperature {Math.floor(weather.main.temp)} Celcius</p>
 
           <img
             src={`http://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`}
