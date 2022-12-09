@@ -1,3 +1,4 @@
+import axios from "axios";
 import React from "react";
 import { useState } from "react";
 
@@ -6,6 +7,7 @@ function InputForm({ data, setData }) {
   const [newNumber, setNewNumber] = useState("");
   const handleClick = (e) => {
     e.preventDefault();
+
     if (newName === "") {
       alert("Name cannot be blank!");
       return;
@@ -24,6 +26,9 @@ function InputForm({ data, setData }) {
 
     const newPerson = { name: newName, number: newNumber };
     setData(data.concat(newPerson));
+    axios.post("http://localhost:3001/persons", newPerson).then((response) => {
+      console.log("New contact added");
+    });
     setNewName("");
     setNewNumber("");
   };

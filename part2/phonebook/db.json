@@ -19,6 +19,21 @@
       "name": "Mary Poppendieck",
       "number": "39-23-6423122",
       "id": 4
+    },
+    {
+      "name": "wal",
+      "number": "001",
+      "id": 5
+    },
+    {
+      "name": "Anna Głaz",
+      "number": "087843847494",
+      "id": 6
+    },
+    {
+      "name": "Waldek",
+      "number": "001221",
+      "id": 7
     }
   ]
 }
